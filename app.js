@@ -1,6 +1,7 @@
 require('dotenv').config();
 const hbs = require('hbs');
 const express = require('express');
+const { application } = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -12,26 +13,30 @@ hbs.registerPartials(__dirname + '/views/partials');
 // Serve static content
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.render('home', {
-    name: 'Terma',
-    title: 'Node Course'
-  });
-})
+// app.get('/', (req, res) => {
+//   res.render('home', {
+//     name: 'Terma',
+//     title: 'Node Course'
+//   });
+// })
 
-app.get('/generic', (req, res) => {
-  res.render('generic', {
-    name: 'Terma',
-    title: 'Node Course'
-  });
-})
+// app.get('/generic', (req, res) => {
+//   res.render('generic', {
+//     name: 'Terma',
+//     title: 'Node Course'
+//   });
+// })
 
-app.get('/elements', (req, res) => {
-  res.render('elements', {
-    name: 'Terma',
-    title: 'Node Course'
-  });
-})
+// app.get('/elements', (req, res) => {
+//   res.render('elements', {
+//     name: 'Terma',
+//     title: 'Node Course'
+//   });
+// })
+
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html')
+});
 
 
 
